@@ -1,43 +1,58 @@
 #include <stdio.h>
-#include <string.h>
-#include <math.h>
 #include <stdlib.h>
+#include <string.h>
+int lexicographic_sort(const char* a, const char* b) {
 
-//Complete the following function.
-
-int marks_summation(int* marks, int number_of_students, char gender) {
-  int sum=0;
-    for(int i=0; i<number_of_students; i++)
-    {
-        if (gender=='b')
-        {
-            if (i%2==0)
-            sum += marks[i];
-        }
-        else {
-            if (i%2!=0)
-            sum += marks[i];
-        }
-    }
-    return sum;
 }
 
-int main() {
-    int number_of_students;
-    char gender;
-    int sum;
-  
-    scanf("%d", &number_of_students);
-    int *marks = (int *) malloc(number_of_students * sizeof (int));
- 
-    for (int student = 0; student < number_of_students; student++) {
-        scanf("%d", (marks + student));
-    }
+int lexicographic_sort_reverse(const char* a, const char* b) {
+
+}
+
+int sort_by_number_of_distinct_characters(const char* a, const char* b) {
     
-    scanf(" %c", &gender);
-    sum = marks_summation(marks, number_of_students, gender);
-    printf("%d", sum);
-    free(marks);
- 
-    return 0;
+}
+
+int sort_by_length(const char* a, const char* b) {
+
+}
+
+void string_sort(char** arr,const int len,int (*cmp_func)(const char* a, const char* b)){
+
+}
+
+
+int main() 
+{
+    int n;
+    scanf("%d", &n);
+  
+    char** arr;
+	arr = (char**)malloc(n * sizeof(char*));
+  
+    for(int i = 0; i < n; i++){
+        *(arr + i) = malloc(1024 * sizeof(char));
+        scanf("%s", *(arr + i));
+        *(arr + i) = realloc(*(arr + i), strlen(*(arr + i)) + 1);
+    }
+  
+    string_sort(arr, n, lexicographic_sort);
+    for(int i = 0; i < n; i++)
+        printf("%s\n", arr[i]);
+    printf("\n");
+
+    string_sort(arr, n, lexicographic_sort_reverse);
+    for(int i = 0; i < n; i++)
+        printf("%s\n", arr[i]); 
+    printf("\n");
+
+    string_sort(arr, n, sort_by_length);
+    for(int i = 0; i < n; i++)
+        printf("%s\n", arr[i]);    
+    printf("\n");
+
+    string_sort(arr, n, sort_by_number_of_distinct_characters);
+    for(int i = 0; i < n; i++)
+        printf("%s\n", arr[i]); 
+    printf("\n");
 }
